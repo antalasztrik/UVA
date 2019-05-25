@@ -2,52 +2,64 @@
 #include <stdlib.h>
 #include <string.h>
 
-int hangman(char *s1, char *s2)
-{
-    int stroke = 0, i, db = 0;
-    int betuk[26] = {0};
-    for(i = 0; s1[i]; i++)
-        if(betuk[s1[i] - 'a'] == 0){
-            betuk[s1[i] - 'a'] = 1;
-            db++;
-        }
+int letters[26] = {0}, count;
+char word[1000] = {0}, guess[30] = {0};
 
-    for(i = 0; s2[i]; i++){
-        if(betuk[s2[i] - 'a'] == 1){
-            betuk[s2[i] - 'a'] = 2;
-            db--;
-            if(db == 0)
+int solve()
+{
+    int stroke = 0, i;
+
+    for(i = 0; guess[i]; i++){
+        if(letters[guess[i] - 'a'] == 1){
+            letters[guess[i] - 'a'] = 2;
+            count--;
+            if(count == 0)
                 return 1;
         }
+
         else{
-            if(betuk[s2[i] - 'a'] == 0)
-            {
-                betuk[s2[i] - 'a'] = -1;
+            if(letters[guess[i] - 'a'] == 0){
+                letters[guess[i] - 'a'] = -1;
                 stroke++;
             }
             if(stroke == 7)
-                return 0;
+                return -1;
         }
     }
 
-    return -1;
+    return 0;
 }
 
+void init(){
+    int i;
+    count = 0;
+    memset(letters, 0, sizeof(int) * 26);
+    for(i = 0; word[i]; i++){
+        if(letters[word[i] - 'a'] == 0){
+            letters[word[i] - 'a'] = 1;
+            count++;
+        }
+    }
+}
+
+void print(int result, int round){
+    printf("Round %d\n", round);
+    if(result == 1)
+        puts("You win.");
+    if(result == 0)
+        puts("You chickened out.");
+    if(result == -1)
+        puts("You lose.");
+}
 
 int main()
 {
-    int i, x;
-    char szo[1000] = {0}, tipp[30] = {0};
-    while(scanf("%d", &i) && i != -1){
-        scanf("%s", szo);
-        scanf("%s", tipp);
-        x = hangman(szo, tipp);
-        if(x == 1)
-            printf("Round %d\nYou win.\n", i);
-        if(x == -1)
-            printf("Round %d\nYou chickened out.\n", i);
-        if(x == 0)
-            printf("Round %d\nYou lose.\n", i);
+    int R, result;
+    while(scanf("%d", &R) && (R != -1)){
+        scanf("%s %s", word, guess);
+        init();
+        result = solve();
+        print(result, R);
     }
     return 0;
 }
