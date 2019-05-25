@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 /*int main()
 {
@@ -27,9 +26,7 @@
                 l -= 10 - t[l][0] + 1;
             }
         }
-
         printf("Case %d: %s\n", i + 1, t[Y - 1]);
-
     }
     return 0;
 }*/
@@ -37,13 +34,14 @@
 int main()
 {
     int N, i, j;
+    char card[3];
     scanf("%d", &N);
-    char t[52][3];
-    for(i = 0; i < N; i++)
-    {
-        for(j = 0; j < 52; j++)
-            scanf("%s", t[j]);
-        printf("Case %d: %s\n", i + 1, t[32]);
+    for(i = 0; i < N; i++){
+        for(j = 0; j < 52; j++) {
+            scanf("%s", card);
+            if(j == 32)
+                printf("Case %d: %s\n", i + 1, card);
+        }
     }
     return 0;
 }
