@@ -5,9 +5,9 @@ int players[1000000];
 
 int main()
 {
-    int n, a, b, c, i, j, winner, x, p;
-    scanf("%d", &n);
-    while(n--)
+    int N, a, b, c, i, j, winner, x, p;
+    scanf("%d", &N);
+    while(N--)
     {
         winner = 0;
         scanf("%d %d %d", &a, &b, &c);
