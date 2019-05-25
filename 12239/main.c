@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main()
 {
@@ -10,8 +11,10 @@ int main()
         if(N == 0 && B == 0)
             break;
 
-        int *t = calloc(B, sizeof(int));
-        int *ossz = calloc(N + 1, sizeof(int));
+        int t[B];
+        int ossz[N + 1];
+
+        memset(ossz, 0, (N + 1) * sizeof(int));
 
         for(i = 0; i < B; i++)
             scanf("%d", &t[i]);
@@ -25,8 +28,6 @@ int main()
                 good = 0;
 
         printf("%c\n", good ? 'Y' :'N');
-        free(t);
-        free(ossz);
     }
     return 0;
 }
