@@ -2,53 +2,45 @@
 #include <stdlib.h>
 #include <string.h>
 
+int top, north, west;
+
+void init(){
+    top = 1;
+    north = 2;
+    west = 3;
+}
+
+void rotate_a(int *a){
+    int tmp = top;
+    top = 7 - *a;
+    *a = tmp;
+}
+
+void rotate_b(int *a){
+    int tmp = top;
+    top = *a;
+    *a = 7 - tmp;
+}
+
+void solve(int n){
+    char s[6];
+    for(; n; n--){
+        scanf("%s", s);
+        if(!strcmp(s, "north")) rotate_a(&north);
+        if(!strcmp(s, "west"))  rotate_a(&west);
+        if(!strcmp(s, "south")) rotate_b(&north);
+        if(!strcmp(s, "east"))  rotate_b(&west);
+    }
+}
+
 int main()
 {
-    int t, n, w, db, tmp;
-    char s[6];
-    while(scanf("%d", &db))
+    int db;
+    while(scanf("%d", &db) && db)
     {
-        t = 1;
-        n = 2;
-        w = 3;
-
-        if(!db)
-            break;
-
-        while(db)
-        {
-            scanf("%s", s);
-            if(!strcmp(s, "north"))
-            {
-                tmp = t;
-                t = 7 - n;
-                n = tmp;
-            }
-
-            if(!strcmp(s, "west"))
-            {
-                tmp = t;
-                t = 7 - w;
-                w = tmp;
-            }
-
-            if(!strcmp(s, "south"))
-            {
-                tmp = t;
-                t = n;
-                n = 7 - tmp;
-            }
-
-            if(!strcmp(s, "east"))
-            {
-                tmp = t;
-                t = w;
-                w = 7 - tmp;
-            }
-
-            db--;
-        }
-        printf("%d\n", t);
+        init();
+        solve(db);
+        printf("%d\n", top);
     }
     return 0;
 }
