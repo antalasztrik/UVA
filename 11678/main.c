@@ -2,42 +2,54 @@
 #include <stdlib.h>
 #include <string.h>
 
+int Anum, Bnum;
+int adeck[100000], bdeck[100000];
+
+void init(){
+    Anum = Bnum = 0;
+    memset(adeck, 0, sizeof(int) * 100000);
+    memset(bdeck, 0, sizeof(int) * 100000);
+}
+
+void input(int A, int B){
+    int i, num;
+    for(i = 0; i < A; i++)
+    {
+        scanf("%d", &num);
+        adeck[num]++;
+    }
+
+    for(i = 0; i < B; i++)
+    {
+        scanf("%d", &num);
+        bdeck[num]++;
+    }
+}
+
+int solve(){
+    int i, Anum, Bnum;
+    for(i = 0; i < 100000; i++)
+    {
+        if(adeck[i] != 0 && bdeck[i] == 0)
+            Anum++;
+
+        if(adeck[i] == 0 && bdeck[i] != 0)
+            Bnum++;
+    }
+
+    return Anum < Bnum ? Anum: Bnum;
+}
+
 int main()
 {
-    int A, B, An, Bn, N, i;
-    int AK[100000], BK[100000];
-    while(scanf("%d %d", &A, &B))
+    int A, B, result;
+    while(scanf("%d %d", &A, &B) && A && B)
     {
-        if(A == 0 && B == 0)
-            break;
-
-        An = Bn = 0;
-        memset(AK, 0, sizeof(int) * 100000);
-        memset(BK, 0, sizeof(int) * 100000);
-
-        for(i = 0; i < A; i++)
-        {
-            scanf("%d", &N);
-            AK[N]++;
-        }
-
-        for(i = 0; i < B; i++)
-        {
-            scanf("%d", &N);
-            BK[N]++;
-        }
-
-        for(i = 0; i < 100000; i++)
-        {
-            if(AK[i] != 0 && BK[i] == 0)
-                An++;
-
-            if(AK[i] == 0 && BK[i] != 0)
-                Bn++;
-        }
-
-        printf("%d\n", An < Bn ? An : Bn);
-
+        init();
+        input(A, B);
+        result = solve();
+        printf("%d\n", result);
     }
+
     return 0;
 }
