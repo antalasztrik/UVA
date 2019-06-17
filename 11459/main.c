@@ -7,7 +7,7 @@ int a, b, c, winner;
 
 void init(){
     winner = 0;
-    int i, x, p;
+    int i, start, end;
     for(i = 0; i < a; i++)
         players[i] = 1;
 
@@ -15,8 +15,8 @@ void init(){
         step[i] = i;
 
     for(i = 0; i < b; i++){
-        scanf("%d %d", &x, &p);
-        step[x] = p;
+        scanf("%d %d", &start, &end);
+        step[start] = end;
     }
 }
 
