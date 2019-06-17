@@ -12,19 +12,19 @@ int main()
             break;
 
         int t[B];
-        int ossz[N + 1];
+        int diff[N + 1];
 
-        memset(ossz, 0, (N + 1) * sizeof(int));
+        memset(diff, 0, (N + 1) * sizeof(int));
 
         for(i = 0; i < B; i++)
             scanf("%d", &t[i]);
 
         for(i = 0; i < B; i++)
             for(j = 0; j < B; j++)
-                ossz[abs(t[i] - t[j])]++;
+                diff[abs(t[i] - t[j])]++;
 
         for(i = 0; i < N + 1; i++)
-            if(ossz[i] == 0)
+            if(diff[i] == 0)
                 good = 0;
 
         printf("%c\n", good ? 'Y' :'N');
