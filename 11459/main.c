@@ -7,16 +7,17 @@ int a, b, c, winner;
 
 void init(){
     winner = 0;
-    int i, start, end;
+    int i, x, p;
     for(i = 0; i < a; i++)
         players[i] = 1;
 
     for(i = 0; i < 101; i++)
         step[i] = i;
 
+
     for(i = 0; i < b; i++){
-        scanf("%d %d", &start, &end);
-        step[start] = end;
+        scanf("%d %d", &x, &p);
+        step[x] = p;
     }
 }
 
@@ -27,14 +28,16 @@ void rolls(){
         scanf("%d", &x);
         if(!winner)
         {
-            j = players[i%a] + x;
-            if(step[j] < 100)
-                players[i%a] = step[j];
-            else
-            {
-                players[i%a] = 100;
-                winner = 1;
+            j = players[i % a] + x;
+            if(j < 100){
+                players[i % a] = step[j];
             }
+            else{
+                players[i % a] = 100;
+            }
+
+            if(players[i % a] == 100)
+                winner = 1;
         }
     }
 }
@@ -46,6 +49,7 @@ int main()
     while(N--)
     {
         scanf("%d %d %d", &a, &b, &c);
+
         init();
         rolls();
 
