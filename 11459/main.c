@@ -14,12 +14,10 @@ void init(){
     for(i = 0; i < 101; i++)
         step[i] = i;
 
-
     for(i = 0; i < b; i++){
         scanf("%d %d", &x, &p);
         step[x] = p;
     }
-
 }
 
 void rolls(){
