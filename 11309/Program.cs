@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,14 +21,16 @@ namespace UVA
                 s = Console.ReadLine();
                 x = 1000 * (s[0] - 48) + 100 * (s[1] - 48) + 10 * (s[3] - 48) + (s[4] - 48);
                 z = Solve(x);
-                Console.WriteLine("%02d:%02d\n", z / 100, z % 100);
+                String hour = Convert.ToString(z / 100);
+                String minute = Convert.ToString(z % 100);
+                Console.WriteLine(hour.PadLeft(2, '0') + ":" + minute.PadLeft(2, '0') + "\n");
                 n--;
             }
         }
 
         private static int Solve(int x)
         {
-            while (palindrome[++x % 2360] != 1);
+            while (palindrome[++x % 2360] != 1) ;
             return x % 2360;
         }
 

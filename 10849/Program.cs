@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,7 @@ namespace UVA
                 N = Int32.Parse(Console.ReadLine());
                 while (T > 0)
                 {
-                    List<string> positions = Console.ReadLine().Split(new[] { "  " }, StringSplitOptions.RemoveEmptyEntries)
+                    List<string> positions = Console.ReadLine().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(s => s.Trim())
                     .ToList();
 
