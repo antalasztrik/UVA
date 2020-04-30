@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +31,8 @@ namespace UVA
 
         private static void Print()
         {
-            for (int i = 0; i < 52; i++){
+            for (int i = 0; i < 52; i++)
+            {
                 Console.WriteLine(names[(deck[set, i]) % 13] + " of " + color[(deck[set, i] - 1) / 13]);
             }
         }
@@ -39,7 +40,7 @@ namespace UVA
         private static void Solve()
         {
             String numShuffle;
-            while((numShuffle = Console.ReadLine()) != null && !numShuffle.Equals(""))
+            while ((numShuffle = Console.ReadLine()) != null && !numShuffle.Equals(""))
             {
                 Shuffle(Int32.Parse(numShuffle) - 1);
             }
